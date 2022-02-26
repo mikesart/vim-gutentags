@@ -88,6 +88,13 @@ if [ "$1" != "" ]; then
     exit 1
 fi
 
+# http://mywiki.wooledge.org/BashFAQ/045
+if [ -f "$TAGS_FILE.lock" ]; then
+    # lock is already held
+    printf >&2 'cannot acquire lock, giving up: %s\n' "$TAGS_FILE.lock"
+    exit 0
+fi
+
 echo "Locking tags file..."
 echo $$ > "$TAGS_FILE.lock"
 
