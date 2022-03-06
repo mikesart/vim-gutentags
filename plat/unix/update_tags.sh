@@ -143,19 +143,19 @@ if [ $INDEX_WHOLE_PROJECT -eq 1 ]; then
     echo "Running ctags on whole project"
     if [ "$CTAGS_OPT_FILE" != "" ]; then
         echo "$CTAGS_EXE -f \"$TAGS_FILE.temp\" \"$CTAGS_OPT_FILE\" $CTAGS_ARGS \"$CTAGS_ARG_LAST\""
-        "$CTAGS_EXE" -f "$TAGS_FILE.temp" "$CTAGS_OPT_FILE" $CTAGS_ARGS "$CTAGS_ARG_LAST"
+        time "$CTAGS_EXE" -f "$TAGS_FILE.temp" "$CTAGS_OPT_FILE" $CTAGS_ARGS "$CTAGS_ARG_LAST"
     else
         echo "$CTAGS_EXE -f \"$TAGS_FILE.temp\" $CTAGS_ARGS \"$CTAGS_ARG_LAST\""
-        "$CTAGS_EXE" -f "$TAGS_FILE.temp" $CTAGS_ARGS "$CTAGS_ARG_LAST"
+        time "$CTAGS_EXE" -f "$TAGS_FILE.temp" $CTAGS_ARGS "$CTAGS_ARG_LAST"
     fi
 else
     echo "Running ctags on \"$UPDATED_SOURCE\""
     if [ "$CTAGS_OPT_FILE" != "" ]; then
         echo "$CTAGS_EXE -f \"$TAGS_FILE.temp\" \"$CTAGS_OPT_FILE\" $CTAGS_ARGS --append \"$UPDATED_SOURCE\""
-        "$CTAGS_EXE" -f "$TAGS_FILE.temp" "$CTAGS_OPT_FILE" $CTAGS_ARGS --append "$UPDATED_SOURCE"
+        time "$CTAGS_EXE" -f "$TAGS_FILE.temp" "$CTAGS_OPT_FILE" $CTAGS_ARGS --append "$UPDATED_SOURCE"
     else
         echo "$CTAGS_EXE -f \"$TAGS_FILE.temp\" $CTAGS_ARGS --append \"$UPDATED_SOURCE\""
-        "$CTAGS_EXE" -f "$TAGS_FILE.temp" $CTAGS_ARGS --append "$UPDATED_SOURCE"
+        time "$CTAGS_EXE" -f "$TAGS_FILE.temp" $CTAGS_ARGS --append "$UPDATED_SOURCE"
     fi
 fi
 
